@@ -30,7 +30,7 @@ function getName(character) {
  */
 function getFilmCount(character) {
   // TODO: Add your code inside the functions (others below).
-
+  return character.films.length;
 }
 
 /**
@@ -43,6 +43,12 @@ function getFilmCount(character) {
 */
 function getSecondStarshipName(character) {
   // TODO: Add your code here.
+  if(character.starships.length > 0){
+    return character.starships[1].name;
+  }
+  else{
+    return 'none';
+    }
 }
 
 /**
@@ -56,6 +62,7 @@ function getSecondStarshipName(character) {
  */
 function getSummary(character) {
   // TODO: Add your code here.
+  return `${character.name}, ${character.height}cm, ${character.mass}kg. Featured in ${character.films.length} films.`
 }
 
 /**
@@ -67,7 +74,17 @@ function getSummary(character) {
  * Sample data expected output: 8000
 */
 function getVehiclesCostInCreditsSumTotal(character) {
-  // TODO: Add your code here.
+  // TODO: Add your code here. 
+  let sumTotal = 0;
+  
+    Number(character.vehicles.cost_in_credits);
+ 
+    sumTotal = character.vehicles.reduce((acc, reducer)=>{
+      
+    return acc + reducer.cost_in_credits;
+    
+  }, 0);
+console.log(sumTotal);
 }
 
 /**
@@ -82,6 +99,12 @@ function getVehiclesCostInCreditsSumTotal(character) {
 */
 function getStarshipPassengerAndCrewSumTotal(character) {
   // TODO: Add your code here.
+  let sum = 0;
+  sum = character.starships.reduce((acc, reducer)=>{
+  return acc + (reducer.passengers + reducer.crew)
+  
+}, 0);
+console.log(sum);
 }
 
 /**
@@ -99,6 +122,9 @@ function getStarshipPassengerAndCrewSumTotal(character) {
 */
 function getNthFilm(character, filmNumber) {
   // TODO: Add your code here.
+  const film = character.filter(item => item["films"] < 4)
+
+  console.log(film);
 }
 
 /**
