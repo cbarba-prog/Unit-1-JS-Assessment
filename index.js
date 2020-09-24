@@ -30,7 +30,7 @@ function getName(character) {
  */
 function getFilmCount(character) {
   // TODO: Add your code inside the functions (others below).
-
+  return character.films.length;
 }
 
 /**
@@ -43,6 +43,12 @@ function getFilmCount(character) {
 */
 function getSecondStarshipName(character) {
   // TODO: Add your code here.
+  if(character.starships.length > 0){
+    return character.starships[1].name;
+  }
+  else{
+    return 'none';
+    }
 }
 
 /**
@@ -56,6 +62,7 @@ function getSecondStarshipName(character) {
  */
 function getSummary(character) {
   // TODO: Add your code here.
+  return `${character.name}, ${character.height}cm, ${character.mass}kg. Featured in ${character.films.length} films.`
 }
 
 /**
@@ -67,7 +74,12 @@ function getSummary(character) {
  * Sample data expected output: 8000
 */
 function getVehiclesCostInCreditsSumTotal(character) {
-  // TODO: Add your code here.
+  // TODO: Add your code here. 
+  const totalCost = character.vehicles.reduce((totalCost, reducer) => {
+    return (totalCost += reducer.cost_in_credits);
+  }, 0);
+  return totalCost;
+
 }
 
 /**
@@ -82,6 +94,12 @@ function getVehiclesCostInCreditsSumTotal(character) {
 */
 function getStarshipPassengerAndCrewSumTotal(character) {
   // TODO: Add your code here.
+  
+  const sum = character.starships.reduce((sum, reducer)=>{
+  return (sum += (reducer.passengers + reducer.crew))
+  
+}, 0);
+  return sum;
 }
 
 /**
@@ -97,9 +115,16 @@ function getStarshipPassengerAndCrewSumTotal(character) {
  * Given film #1, expected output: `A New Hope`
  * Given film #7, expected error: `There are only 3 Star Wars movies. Flan fiction excluded.`
 */
+
 function getNthFilm(character, filmNumber) {
-  // TODO: Add your code here.
-}
+  if(filmNumber < 1 || filmNumber > 3) {
+  return `There are only 3 Star Wars movies. Flan fiction excluded. My favorite extra cheesy movie is Weird Science`;
+  }
+  else {
+  return character.films[filmNumber-1];
+  }
+  
+  }
 
 /**
  * ### Challenge `getCargoCapacityTotal`
