@@ -75,16 +75,11 @@ function getSummary(character) {
 */
 function getVehiclesCostInCreditsSumTotal(character) {
   // TODO: Add your code here. 
-  let sumTotal = 0;
-  
-    Number(character.vehicles.cost_in_credits);
- 
-    sumTotal = character.vehicles.reduce((acc, reducer)=>{
-      
-    return acc + reducer.cost_in_credits;
-    
+  const totalCost = character.vehicles.reduce((totalCost, reducer) => {
+    return (totalCost += reducer.cost_in_credits);
   }, 0);
-console.log(sumTotal);
+  return totalCost;
+
 }
 
 /**
@@ -99,12 +94,12 @@ console.log(sumTotal);
 */
 function getStarshipPassengerAndCrewSumTotal(character) {
   // TODO: Add your code here.
-  let sum = 0;
-  sum = character.starships.reduce((acc, reducer)=>{
-  return acc + (reducer.passengers + reducer.crew)
+  
+  const sum = character.starships.reduce((sum, reducer)=>{
+  return (sum += (reducer.passengers + reducer.crew))
   
 }, 0);
-console.log(sum);
+  return sum;
 }
 
 /**
@@ -120,12 +115,16 @@ console.log(sum);
  * Given film #1, expected output: `A New Hope`
  * Given film #7, expected error: `There are only 3 Star Wars movies. Flan fiction excluded.`
 */
-function getNthFilm(character, filmNumber) {
-  // TODO: Add your code here.
-  const film = character.filter(item => item["films"] < 4)
 
-  console.log(film);
-}
+function getNthFilm(character, filmNumber) {
+  if(filmNumber < 1 || filmNumber > 3) {
+  return `There are only 3 Star Wars movies. Flan fiction excluded. My favorite extra cheesy movie is Weird Science`;
+  }
+  else {
+  return character.films[filmNumber-1];
+  }
+  
+  }
 
 /**
  * ### Challenge `getCargoCapacityTotal`
